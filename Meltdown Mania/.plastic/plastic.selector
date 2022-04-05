@@ -1,4 +1,0 @@
-repository "Meltdown Mania@local"
-  path "/"
-    br "/main"
-    co "/main"
