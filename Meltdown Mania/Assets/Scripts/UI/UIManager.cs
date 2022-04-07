@@ -9,10 +9,18 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp("escape") && pasueMenu != null)
+        if (Input.GetKeyDown("escape") && pasueMenu != null)
         {
-            pasueMenu.SetActive(true);
-            darkenImage.SetActive(true);
+            if (pasueMenu.activeInHierarchy == false)
+            {
+                pasueMenu.SetActive(true);
+                darkenImage.SetActive(true);
+            }
+            else
+            {
+                pasueMenu.SetActive(false);
+                darkenImage.SetActive(false);
+            }
         }
     }
 
