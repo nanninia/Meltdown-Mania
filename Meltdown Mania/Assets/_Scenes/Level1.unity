@@ -8057,8 +8057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceblocks: []
-  startTime: 2
-  meltRate: 3
+  startTime: 1
+  meltRate: 0.3
 --- !u!4 &1913360174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 950403503740855371, guid: 6c8c64362bfb5394396dd2e9d69b3d55, type: 3}
@@ -10116,7 +10116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5993906914104220518
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10126,15 +10126,15 @@ RectTransform:
   m_GameObject: {fileID: 5993906914104220517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33534, y: 0.251505, z: 0.33534}
+  m_LocalScale: {x: 0.11737236, y: 0.251505, z: 0.33534}
   m_Children: []
   m_Father: {fileID: 5993906913136903652}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.7, y: 25}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -34.95, y: 25}
+  m_SizeDelta: {x: 90, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5993906914104220519
 MonoBehaviour:
@@ -10346,8 +10346,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Time Remaining: 999'
 --- !u!222 &5993906914182192485
@@ -10370,7 +10370,7 @@ GameObject:
   - component: {fileID: 5993906914182192485}
   - component: {fileID: 5993906914182192484}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10392,8 +10392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 589.43005, y: 498.15002}
-  m_SizeDelta: {x: -1057.6053, y: -963.8241}
+  m_AnchoredPosition: {x: 596.062, y: 498.15002}
+  m_SizeDelta: {x: -954.1405, y: -963.8241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5993906914200272386
 GameObject:
@@ -11225,6 +11225,7 @@ GameObject:
   - component: {fileID: 6964671431380980532}
   - component: {fileID: 6964671431380980535}
   - component: {fileID: 6964671431380980533}
+  - component: {fileID: 6964671431380980536}
   m_Layer: 0
   m_Name: UI_Manager
   m_TagString: Untagged
@@ -11246,6 +11247,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   darkenImage: {fileID: 6964671431110172276}
   pasueMenu: {fileID: 6964671431527678574}
+--- !u!114 &6964671431380980536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964671431380980534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f208dece37144b4c986a32ef479619a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ice: {fileID: 1887194512}
+  startingTime: 60
+  timer: {fileID: 5993906914182192484}
+  speed: 23
+  thermTemp: {fileID: 5993906914104220518}
+  thermSpriteArray:
+  - {fileID: 5993906913041709314}
+  - {fileID: 5993906913887137021}
+  - {fileID: 5993906913825617081}
+  - {fileID: 5993906914200272386}
 --- !u!1 &6964671431527678574
 GameObject:
   m_ObjectHideFlags: 0
