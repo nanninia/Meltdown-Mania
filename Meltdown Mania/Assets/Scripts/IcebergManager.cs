@@ -29,7 +29,8 @@ public class IcebergManager : MonoBehaviour
         }
 
         //Pick an iceblock to melt
-        InvokeRepeating("MeltIceblock", startTime, meltRate);
+        //InvokeRepeating("MeltIceblock", startTime, meltRate);
+        StartCoroutine("MeltIceblock", startTime);
     }
 
     private void Update()
@@ -63,14 +64,22 @@ public class IcebergManager : MonoBehaviour
 
     }
 
-    void MeltIceblock()
+    IEnumerator MeltIceblock()
     {
-        int chosenBlock = Random.Range(0, fineIceblocks.Count);
-        Iceblock iceData = fineIceblocks[chosenBlock].GetComponent<Iceblock>();
-        Animator anim = fineIceblocks[chosenBlock].GetComponent<Animator>();
+        while (true)
+        {
+            if (fineIceblocks.Count > 0)
+            {
+                int chosenBlock = Random.Range(0, fineIceblocks.Count);
+                Iceblock iceData = fineIceblocks[chosenBlock].GetComponent<Iceblock>();
+                Animator anim = fineIceblocks[chosenBlock].GetComponent<Animator>();
 
-        iceData.currentState = IceState.Melting;
-        anim.enabled = true;
-        fineIceblocks.Remove(fineIceblocks[chosenBlock]);
+                iceData.currentState = IceState.Melting;
+                anim.enabled = true;
+                fineIceblocks.Remove(fineIceblocks[chosenBlock]);
+            }
+
+            yield return new WaitForSeconds(meltRate); // Spencer added this line and changed this function to an IEnum
+        }
     }
 }

@@ -22,7 +22,7 @@ public class UIMechanics : MonoBehaviour
     {
         timer.text = "Time Remaining: " + startingTime;
         time = startingTime;
-        thermTemp.sizeDelta = new Vector2(90, 100);
+        thermTemp.localScale = new Vector2(0.1f, 1);
     }
 
     private void Update()
@@ -38,8 +38,8 @@ public class UIMechanics : MonoBehaviour
             else if (ice.meltRate < 1 && ice.meltRate > 0.3)
                 ice.meltRate -= (Time.deltaTime / 30);
 
-            if (thermTemp.rect.width < 1440)
-                thermTemp.sizeDelta = new Vector2(thermTemp.rect.width + (speed * Time.deltaTime), thermTemp.rect.height);
+            if (thermTemp.localScale.x < 7.48)
+                thermTemp.localScale = new Vector2(thermTemp.localScale.x + (speed * Time.deltaTime), thermTemp.localScale.y);
             UpdateUI();
         }
         else if ((int)time == 0)
