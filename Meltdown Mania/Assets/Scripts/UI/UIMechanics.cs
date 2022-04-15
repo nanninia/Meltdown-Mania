@@ -17,9 +17,12 @@ public class UIMechanics : MonoBehaviour
     [SerializeField] RectTransform thermTemp;
     [SerializeField] GameObject[] thermSpriteArray;
 
+    [SerializeField] UIManager uiManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         timer.text = "Time Remaining: " + startingTime;
         time = startingTime;
         thermTemp.localScale = new Vector2(0.1f, 1);
@@ -43,7 +46,12 @@ public class UIMechanics : MonoBehaviour
             UpdateUI();
         }
         else if ((int)time == 0)
+        {
+            uiManager.OpenMenu(uiManager.winScreen);
+            time = 999;
+            Time.timeScale = 0;
             Debug.Log("You win!");
+        }
     }
 
 
