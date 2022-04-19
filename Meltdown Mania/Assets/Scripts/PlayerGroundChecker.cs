@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 public class PlayerGroundChecker : MonoBehaviour
 {
     public PlayerController playerController;
+    private int collisionCount = 0;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || collisionCount == 0)
         {
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            Invoke("RestartLevel", 0.1f);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.GetComponent<Iceblock>() != null)
         {
@@ -25,5 +27,20 @@ public class PlayerGroundChecker : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collisionCount++;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collisionCount--;
+    }
+
+    void RestartLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 }

@@ -13,6 +13,10 @@ public class IcebergManager : MonoBehaviour
     public float startTime = 2.0f;
     public float meltRate = 3.0f;
 
+    public GameObject iceCrystalPrefab;
+    public float iceCrystalFrequency = 10.0f;
+    public float iceCrystalDelay = 15.0f;
+
     private void Start()
     {
         for(int i=0; i<transform.childCount; i++)
@@ -31,6 +35,7 @@ public class IcebergManager : MonoBehaviour
         //Pick an iceblock to melt
         //InvokeRepeating("MeltIceblock", startTime, meltRate);
         StartCoroutine("MeltIceblock", startTime);
+        InvokeRepeating("SpawnIceCrystal", iceCrystalDelay, iceCrystalFrequency);
     }
 
     private void Update()
@@ -80,6 +85,17 @@ public class IcebergManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(meltRate); // Spencer added this line and changed this function to an IEnum
+        }
+    }
+
+    void SpawnIceCrystal()
+    {
+        if (fineIceblocks.Count > 0)
+        {
+            int chosenBlock = Random.Range(0, fineIceblocks.Count);
+            Iceblock spawnBlock = fineIceblocks[chosenBlock].GetComponent<Iceblock>();
+
+            Instantiate(iceCrystalPrefab, spawnBlock.transform.position, Quaternion.identity);
         }
     }
 }
