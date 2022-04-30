@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerGroundChecker : MonoBehaviour
 {
+    [SerializeField] bool isNormalLevel = true;
+    [SerializeField] UIMechanics uiMechs;
+
     public PlayerController playerController;
     private int collisionCount = 0;
 
@@ -12,7 +15,7 @@ public class PlayerGroundChecker : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) || collisionCount == 0)
         {
-            Invoke("RestartLevel", 0.1f);
+            //Invoke("RestartLevel", 0.1f);
         }
     }
 
@@ -24,7 +27,14 @@ public class PlayerGroundChecker : MonoBehaviour
             print(iceData.currentState);
             if(iceData.currentState == IceState.Melted && playerController.currentState == PlayerController.PlayerState.OnGround)
             {
-                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                if (isNormalLevel == true)
+                {
+                    Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                }
+                else
+                {
+                    uiMechs.Loss();
+                }
             }
         }
     }
@@ -41,6 +51,14 @@ public class PlayerGroundChecker : MonoBehaviour
 
     void RestartLevel()
     {
-        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        if (isNormalLevel == true)
+        {
+            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        }
+        else
+        {
+            uiMechs.Loss();
+        }
+
     }
 }
